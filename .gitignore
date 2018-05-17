@@ -1,5 +1,5 @@
 target/
-
+.vscode
 ### STS ###
 .apt_generated
 .classpath
@@ -7,7 +7,7 @@ target/
 .project
 .settings
 .springBeans
-.sts4_cache
+.sts4-cache
 ### IntelliJ IDEA ###
 .idea
 *.iws
