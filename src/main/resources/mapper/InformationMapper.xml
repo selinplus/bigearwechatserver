@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigear.wechat.dao.InformationMapper">
+  <resultMap id="BaseResultMap" type="com.bigear.wechat.model.Information">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="catagory" jdbcType="VARCHAR" property="catagory" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <select id="getByCatagory" parameterType="String" resultType="com.bigear.wechat.model.Information">
+    select * from information where catagory=#{catagory}
+  </select>
+  <select id="getByTitle" parameterType="String" resultType="com.bigear.wechat.model.Information">
+    select * from information where title=#{title}
+  </select>
+</mapper>
