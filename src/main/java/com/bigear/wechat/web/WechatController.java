@@ -4,6 +4,13 @@ import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,13 +32,14 @@ public class WechatController {
   private WxMpMessageRouter router;
 
   @GetMapping(produces = "text/plain;charset=utf-8")
-  public String authGet(
+  public void authGet(
       @RequestParam(name = "signature",
           required = false) String signature,
       @RequestParam(name = "timestamp",
           required = false) String timestamp,
       @RequestParam(name = "nonce", required = false) String nonce,
-      @RequestParam(name = "echostr", required = false) String echostr) {
+      @RequestParam(name = "echostr", required = false) String echostr,
+      HttpServletRequest request, HttpServletResponse response) {
 
     this.logger.info("\n接收到来自微信服务器的认证消息：[{}, {}, {}, {}]", signature,
         timestamp, nonce, echostr);
@@ -39,12 +47,18 @@ public class WechatController {
     if (StringUtils.isAnyBlank(signature, timestamp, nonce, echostr)) {
       throw new IllegalArgumentException("请求参数非法，请核实!");
     }
-    this.logger.info("\n认证结果：【{}】",this.wxService.checkSignature(timestamp, nonce, signature));
-    if (this.wxService.checkSignature(timestamp, nonce, signature)) {
-      return echostr;
-    }
-
-    return "非法请求";
+    PrintWriter out;
+	try {
+		out = response.getWriter();
+		this.logger.info("\n认证结果：【{}】",this.wxService.checkSignature(timestamp, nonce, signature));
+	    if (this.wxService.checkSignature(timestamp, nonce, signature)) {
+	      out.print(echostr);
+	    }
+	    out.print("非法请求");
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}   
   }
 
   @PostMapping(produces = "application/xml; charset=UTF-8")
