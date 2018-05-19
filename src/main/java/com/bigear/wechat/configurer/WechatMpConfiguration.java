@@ -3,6 +3,7 @@ package com.bigear.wechat.configurer;
 import com.bigear.wechat.handler.*;
 import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
+import me.chanjar.weixin.mp.api.WxMpInRedisConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.constant.WxMpEventConstants;
@@ -53,6 +54,7 @@ public class WechatMpConfiguration {
   @ConditionalOnMissingBean
   public WxMpConfigStorage configStorage() {
     WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
+    // WxMpInRedisConfigStorage configStorage = new WxMpInRedisConfigStorage(jedisPool);
     configStorage.setAppId(this.properties.getAppId());
     configStorage.setSecret(this.properties.getSecret());
     configStorage.setToken(this.properties.getToken());
