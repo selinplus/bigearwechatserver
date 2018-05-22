@@ -59,6 +59,7 @@ public class WechatMpConfiguration {
     configStorage.setSecret(this.properties.getSecret());
     configStorage.setToken(this.properties.getToken());
     configStorage.setAesKey(this.properties.getAesKey());
+    logger.info(configStorage.toString());
     return configStorage;
   }
 

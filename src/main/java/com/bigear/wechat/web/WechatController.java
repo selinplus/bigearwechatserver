@@ -61,7 +61,8 @@ public class WechatController {
 	}   
   }
 
-  @PostMapping(produces = "application/xml; charset=UTF-8")
+ // @PostMapping(produces = "application/xml; charset=UTF-8")
+  @PostMapping(produces = "application/xml")
   public String post(@RequestBody String requestBody,
                      @RequestParam("signature") String signature,
                      @RequestParam("timestamp") String timestamp,
