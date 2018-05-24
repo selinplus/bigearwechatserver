@@ -5,6 +5,8 @@ import com.bigear.wechat.model.User;
 import com.bigear.wechat.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,5 +55,9 @@ public class UserController {
         List<User> list = userService.findAll();
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
+    }
+    @GetMapping("/test")
+    public Result test() {
+    	return ResultGenerator.genSuccessResult();
     }
 }

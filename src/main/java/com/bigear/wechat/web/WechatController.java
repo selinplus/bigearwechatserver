@@ -15,7 +15,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 
 /**
  * @author selinplus
@@ -61,8 +63,8 @@ public class WechatController {
 	}   
   }
 
- // @PostMapping(produces = "application/xml; charset=UTF-8")
-  @PostMapping(produces = "application/xml")
+//  @PostMapping(produces = "application/xml; charset=UTF-8")
+  @PostMapping(produces = {MediaType.APPLICATION_XML_VALUE})
   public String post(@RequestBody String requestBody,
                      @RequestParam("signature") String signature,
                      @RequestParam("timestamp") String timestamp,
@@ -100,9 +102,7 @@ public class WechatController {
       if (outMessage == null) {
         return "";
       }
-
-      out = outMessage
-          .toEncryptedXml(this.wxService.getWxMpConfigStorage());
+      out = outMessage.toEncryptedXml(this.wxService.getWxMpConfigStorage());
     }
 
     this.logger.debug("\n组装回复信息：{}", out);
