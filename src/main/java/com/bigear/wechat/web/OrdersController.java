@@ -1,12 +1,10 @@
 package com.bigear.wechat.web;
 import com.bigear.wechat.core.Result;
 import com.bigear.wechat.core.ResultGenerator;
-import com.bigear.wechat.model.User;
-import com.bigear.wechat.service.UserService;
+import com.bigear.wechat.model.Orders;
+import com.bigear.wechat.service.OrdersService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,48 +14,44 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* Created by selinplus on 2018/05/16.
+* Created by selinplus on 2018/05/28.
 */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/orders")
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class UserController {
+public class OrdersController {
     @Resource
-    private UserService userService;
+    private OrdersService ordersService;
 
     @PostMapping("/add")
-    public Result add(User user) {
-        userService.save(user);
+    public Result add(Orders orders) {
+        ordersService.save(orders);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
     public Result delete(@RequestParam Integer id) {
-        userService.deleteById(id);
+        ordersService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(User user) {
-        userService.update(user);
+    public Result update(Orders orders) {
+        ordersService.update(orders);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
     public Result detail(@RequestParam Integer id) {
-        User user = userService.findById(id);
-        return ResultGenerator.genSuccessResult(user);
+        Orders orders = ordersService.findById(id);
+        return ResultGenerator.genSuccessResult(orders);
     }
 
     @PostMapping("/list")
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
-        List<User> list = userService.findAll();
+        List<Orders> list = ordersService.findAll();
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
-    }
-    @GetMapping("/test")
-    public Result test() {
-    	return ResultGenerator.genSuccessResult();
     }
 }

@@ -1,8 +1,8 @@
 package com.bigear.wechat.service.impl;
 
-import com.bigear.wechat.dao.InformationMapper;
-import com.bigear.wechat.model.Information;
-import com.bigear.wechat.service.InformationService;
+import com.bigear.wechat.dao.PhotoMapper;
+import com.bigear.wechat.model.Photo;
+import com.bigear.wechat.service.PhotoService;
 import com.bigear.wechat.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  */
 @Service
 @Transactional
-public class InformationServiceImpl extends AbstractService<Information> implements InformationService {
+public class PhotoServiceImpl extends AbstractService<Photo> implements PhotoService {
     @Resource
-    private InformationMapper informationMapper;
+    private PhotoMapper photoMapper;
 
 }

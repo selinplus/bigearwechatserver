@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigear.wechat.dao.PhotoMapper">
+  <resultMap id="BaseResultMap" type="com.bigear.wechat.model.Photo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="platenum" jdbcType="VARCHAR" property="platenum" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+  </resultMap>
+</mapper>

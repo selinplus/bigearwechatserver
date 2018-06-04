@@ -1,8 +1,8 @@
 package com.bigear.wechat.service.impl;
 
-import com.bigear.wechat.dao.InformationMapper;
-import com.bigear.wechat.model.Information;
-import com.bigear.wechat.service.InformationService;
+import com.bigear.wechat.dao.OrdersMapper;
+import com.bigear.wechat.model.Orders;
+import com.bigear.wechat.service.OrdersService;
 import com.bigear.wechat.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  */
 @Service
 @Transactional
-public class InformationServiceImpl extends AbstractService<Information> implements InformationService {
+public class OrdersServiceImpl extends AbstractService<Orders> implements OrdersService {
     @Resource
-    private InformationMapper informationMapper;
+    private OrdersMapper ordersMapper;
 
 }

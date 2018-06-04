@@ -1,8 +1,8 @@
 package com.bigear.wechat.web;
 import com.bigear.wechat.core.Result;
 import com.bigear.wechat.core.ResultGenerator;
-import com.bigear.wechat.model.Information;
-import com.bigear.wechat.service.InformationService;
+import com.bigear.wechat.model.Photo;
+import com.bigear.wechat.service.PhotoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,40 +17,40 @@ import java.util.List;
 * Created by selinplus on 2018/05/28.
 */
 @RestController
-@RequestMapping("/information")
+@RequestMapping("/photo")
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class InformationController {
+public class PhotoController {
     @Resource
-    private InformationService informationService;
+    private PhotoService photoService;
 
     @PostMapping("/add")
-    public Result add(Information information) {
-        informationService.save(information);
+    public Result add(Photo photo) {
+        photoService.save(photo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
     public Result delete(@RequestParam Integer id) {
-        informationService.deleteById(id);
+        photoService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(Information information) {
-        informationService.update(information);
+    public Result update(Photo photo) {
+        photoService.update(photo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
     public Result detail(@RequestParam Integer id) {
-        Information information = informationService.findById(id);
-        return ResultGenerator.genSuccessResult(information);
+        Photo photo = photoService.findById(id);
+        return ResultGenerator.genSuccessResult(photo);
     }
 
     @PostMapping("/list")
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
-        List<Information> list = informationService.findAll();
+        List<Photo> list = photoService.findAll();
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
     }
