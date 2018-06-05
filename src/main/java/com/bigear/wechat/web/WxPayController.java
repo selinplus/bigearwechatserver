@@ -28,6 +28,7 @@ import com.github.binarywang.wxpay.bean.entpay.EntPayResult;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.notify.WxPayRefundNotifyResult;
 import com.github.binarywang.wxpay.bean.notify.WxScanPayNotifyResult;
+import com.github.binarywang.wxpay.bean.order.WxPayMpOrderResult;
 import com.github.binarywang.wxpay.bean.request.WxPayAuthcode2OpenidRequest;
 import com.github.binarywang.wxpay.bean.request.WxPayMicropayRequest;
 import com.github.binarywang.wxpay.bean.request.WxPayOrderReverseRequest;
@@ -147,10 +148,15 @@ public class WxPayController implements WxPayService {
 
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   @PostMapping("/createOrder")
-  public <T> T createOrder(@RequestBody WxPayUnifiedOrderRequest request) throws WxPayException {
+  public WxPayMpOrderResult createOrder(@RequestBody WxPayUnifiedOrderRequest request) throws WxPayException {
     return this.wxService.createOrder(request);
+  }
+  @PostMapping("/createOrderTest")
+  public WxPayUnifiedOrderRequest createOrderTest(@RequestBody WxPayUnifiedOrderRequest request) throws WxPayException {
+    return request;
   }
 
   /**
