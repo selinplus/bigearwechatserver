@@ -6,12 +6,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSONObject;
+
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,26 +26,45 @@ public class FileUpDownController {
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
-    public String upload(@RequestParam("file") MultipartFile file) {
-        if (!file.isEmpty()) {
-            try {
-                //TODO:保存文件路径。
-                BufferedOutputStream out = new BufferedOutputStream(
-                        new FileOutputStream(new File(file.getOriginalFilename())));
-                out.write(file.getBytes());
-                out.flush();
-                out.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                return "上传失败," + e.getMessage();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "上传失败," + e.getMessage();
-            }
-            return "上传成功";
-        } else {
-            return "上传失败，因为文件是空的.";
-        }
+    public String upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws FileNotFoundException {
+      if (!file.isEmpty()) {  
+        String saveFileName = new Date().getTime() + file.getOriginalFilename();  
+        // File saveFile = new File(request.getSession().getServletContext().getRealPath("/upload/") + saveFileName); 
+        // // File saveFile = new File(saveFileName);
+        // System.out.println("saveFile: " + saveFile.toString()); 
+        // // String contextPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
+        // // System.out.println("contextPath: " + contextPath);
+        // if (!saveFile.getParentFile().exists()) {  
+        //     saveFile.getParentFile().mkdirs();  
+        // }  
+        //获取跟目录
+        File path = new File(ResourceUtils.getURL("classpath:").getPath());
+        if(!path.exists()) path = new File("");
+        System.out.println("path: "+ path.getAbsolutePath());
+        //如果上传目录为/static/images/upload/，则可以如下获取：
+        File upload = new File(path.getAbsolutePath(),"static/images/upload");
+        if(!upload.exists()) upload.mkdirs();
+        String saveFile = upload + "/" + saveFileName;
+        try {  
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(saveFile));  
+            out.write(file.getBytes());  
+            out.flush();  
+            out.close();  
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("path", saveFileName);
+            jsonObject.put("msg", "上传成功");
+            return jsonObject.toJSONString();
+            // return "{ \"path\": saveFile, \"msg\": \"上传成功\" }";  
+        } catch (FileNotFoundException e) {  
+            e.printStackTrace();  
+            return "上传失败," + e.getMessage();  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+            return "上传失败," + e.getMessage();  
+          }  
+      } else {  
+          return "上传失败，因为文件为空.";  
+      }  
     }
     
     @RequestMapping("/downloadFile/{fileId}")  

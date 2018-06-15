@@ -8,7 +8,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String unionid;
+    private String openid;
 
     private String nickname;
 
@@ -37,17 +37,17 @@ public class Customer {
     }
 
     /**
-     * @return unionid
+     * @return openid
      */
-    public String getUnionid() {
-        return unionid;
+    public String getOpenid() {
+        return openid;
     }
 
     /**
-     * @param unionid
+     * @param openid
      */
-    public void setUnionid(String unionid) {
-        this.unionid = unionid;
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
     /**

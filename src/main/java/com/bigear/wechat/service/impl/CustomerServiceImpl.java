@@ -11,12 +11,17 @@ import javax.annotation.Resource;
 
 
 /**
- * Created by selinplus on 2018/05/28.
+ * Created by selinplus on 2018/06/05.
  */
 @Service
 @Transactional
 public class CustomerServiceImpl extends AbstractService<Customer> implements CustomerService {
     @Resource
     private CustomerMapper customerMapper;
+
+    @Override
+    public void deleteByCustomerId(long customerId) {
+      customerMapper.deleteByCustomerId(customerId);
+	  }
 
 }

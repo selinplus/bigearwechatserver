@@ -7,9 +7,10 @@ public class Photo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String platenum;
-
     private String photo;
+
+    @Column(name = "platenum_id")
+    private Long platenumId;
 
     /**
      * @return id
@@ -26,20 +27,6 @@ public class Photo {
     }
 
     /**
-     * @return platenum
-     */
-    public String getPlatenum() {
-        return platenum;
-    }
-
-    /**
-     * @param platenum
-     */
-    public void setPlatenum(String platenum) {
-        this.platenum = platenum;
-    }
-
-    /**
      * @return photo
      */
     public String getPhoto() {
@@ -51,5 +38,19 @@ public class Photo {
      */
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    /**
+     * @return platenum_id
+     */
+    public Long getPlatenumId() {
+        return platenumId;
+    }
+
+    /**
+     * @param platenumId
+     */
+    public void setPlatenumId(Long platenumId) {
+        this.platenumId = platenumId;
     }
 }

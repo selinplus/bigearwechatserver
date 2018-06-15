@@ -6,7 +6,15 @@
       WARNING - @mbg.generated
     -->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="platenum" jdbcType="VARCHAR" property="platenum" />
     <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="platenum_id" jdbcType="BIGINT" property="platenumId" />
   </resultMap>
+
+  <select id="getPhotoList" resultType="String">
+    select photo from PHOTO where platenum_id = #{platenumId}
+  </select>
+  
+  <delete id="deleteByPlatenumId">
+    delete from PHOTO where platenum_id = #{platenumId}
+  </delete>
 </mapper>

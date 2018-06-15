@@ -3,12 +3,13 @@ package com.bigear.wechat.model;
 import java.util.Date;
 import javax.persistence.*;
 
-public class Information {
+@Table(name = "module_info")
+public class ModuleInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String catagory;
+    private String type;
 
     private String content;
 
@@ -32,17 +33,17 @@ public class Information {
     }
 
     /**
-     * @return catagory
+     * @return type
      */
-    public String getCatagory() {
-        return catagory;
+    public String getType() {
+        return type;
     }
 
     /**
-     * @param catagory
+     * @param type
      */
-    public void setCatagory(String catagory) {
-        this.catagory = catagory;
+    public void setType(String type) {
+        this.type = type;
     }
 
     /**

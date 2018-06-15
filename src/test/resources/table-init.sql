@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `unionid` varchar(100) DEFAULT NULL,
+  `openid` varchar(100) DEFAULT NULL,
   `nickname` varchar(255) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `phone` varchar(15) DEFAULT NULL,
@@ -35,22 +35,17 @@ CREATE TABLE `customer` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `information`
+-- Table structure for `module_info`
 -- ----------------------------
-DROP TABLE IF EXISTS `information`;
-CREATE TABLE `information` (
-  `catagory` varchar(100) DEFAULT NULL,
+DROP TABLE IF EXISTS `module_info`;
+CREATE TABLE `module_info` (
+  `type` varchar(100) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(4000) DEFAULT NULL,
   `title` varchar(200) DEFAULT NULL,
   `create_time` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of information
--- ----------------------------
-INSERT INTO `information` VALUES ('aboutme', '1', null, '关于我们', '2018-05-16 16:18:16');
 
 -- ----------------------------
 -- Table structure for `orders`
@@ -79,7 +74,7 @@ CREATE TABLE `orders` (
 DROP TABLE IF EXISTS `photo`;
 CREATE TABLE `photo` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `platenum` varchar(50) DEFAULT NULL,
+	`platenum_id` bigint(20) DEFAULT NULL,
   `photo` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -102,3 +97,15 @@ CREATE TABLE `platenum` (
 -- ----------------------------
 -- Records of platenum
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `admin_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `admin_user`;
+CREATE TABLE `admin_user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+	`name` varchar(100) DEFAULT NULL,
+	`password` varchar(255) DEFAULT NULL,
+  `create_time` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

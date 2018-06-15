@@ -6,6 +6,7 @@ import com.bigear.wechat.service.PlatenumService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* Created by selinplus on 2018/05/28.
+* Created by selinplus on 2018/06/07.
 */
 @RestController
 @RequestMapping("/platenum")
@@ -24,7 +25,8 @@ public class PlatenumController {
     private PlatenumService platenumService;
 
     @PostMapping("/add")
-    public Result add(Platenum platenum) {
+    public Result add(@RequestBody Platenum platenum) {
+        System.out.println("************platenum*********" + platenum.getPlatenum());
         platenumService.save(platenum);
         return ResultGenerator.genSuccessResult();
     }
