@@ -48,24 +48,11 @@ CREATE TABLE `module_info` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for `orders`
+-- Table structure for `order`
 -- ----------------------------
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE `orders` (
-  `id` bigint(20) DEFAULT NULL,
-  `create_time` timestamp DEFAULT CURRENT_TIMESTAMP,
-  `customer_id` bigint(20) DEFAULT NULL,
-  `order_type` varchar(200) DEFAULT NULL,
-  `order_date` timestamp DEFAULT CURRENT_TIMESTAMP,
-  `order_num` varchar(100) DEFAULT NULL,
-  `price` float(16,2) DEFAULT NULL,
-  `pay_status` varchar(10) DEFAULT NULL,
-  `pay_num` varchar(100) DEFAULT NULL,
-  `platenum` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of orders
+-- Records of order
 -- ----------------------------
 
 -- ----------------------------

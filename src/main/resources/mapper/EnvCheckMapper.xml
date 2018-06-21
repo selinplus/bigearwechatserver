@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigear.wechat.dao.EnvCheckMapper">
+  <resultMap id="BaseResultMap" type="com.bigear.wechat.model.EnvCheck">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="fuel_type" jdbcType="VARCHAR" property="fuelType" />
+    <result column="initial_check" jdbcType="REAL" property="initialCheck" />
+    <result column="first_recheck" jdbcType="REAL" property="firstRecheck" />
+    <result column="second_recheck" jdbcType="REAL" property="secondRecheck" />
+    <result column="third_recheck" jdbcType="REAL" property="thirdRecheck" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+  </resultMap>
+</mapper>

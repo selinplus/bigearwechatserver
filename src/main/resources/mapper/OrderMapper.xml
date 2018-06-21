@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigear.wechat.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.bigear.wechat.model.Order">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="platenum" jdbcType="VARCHAR" property="platenum" />
+    <result column="vehicle_type" jdbcType="VARCHAR" property="vehicleType" />
+    <result column="secu_addition" jdbcType="VARCHAR" property="secuAddition" />
+    <result column="fuel_type" jdbcType="VARCHAR" property="fuelType" />
+    <result column="env_check" jdbcType="VARCHAR" property="envCheck" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="order_num" jdbcType="VARCHAR" property="orderNum" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="payment_method" jdbcType="VARCHAR" property="paymentMethod" />
+    <result column="pay_status" jdbcType="VARCHAR" property="payStatus" />
+  </resultMap>
+</mapper>

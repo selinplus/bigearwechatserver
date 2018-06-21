@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bigear.wechat.dao.SecurityCheckMapper">
+  <resultMap id="BaseResultMap" type="com.bigear.wechat.model.SecurityCheck">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="vehicle_type" jdbcType="VARCHAR" property="vehicleType" />
+    <result column="vehicle_type_detail" jdbcType="VARCHAR" property="vehicleTypeDetail" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+  </resultMap>
+</mapper>
