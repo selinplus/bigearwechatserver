@@ -1,8 +1,8 @@
 package com.bigear.wechat.web;
 import com.bigear.wechat.core.Result;
 import com.bigear.wechat.core.ResultGenerator;
-import com.bigear.wechat.model.Order;
-import com.bigear.wechat.service.OrderService;
+import com.bigear.wechat.model.CheckOrder;
+import com.bigear.wechat.service.CheckOrderService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,40 +18,40 @@ import java.util.List;
 * Created by selinplus on 2018/06/21.
 */
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/check/order")
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class OrderController {
+public class CheckOrderController {
     @Resource
-    private OrderService orderService;
+    private CheckOrderService checkOrderService;
 
     @PostMapping("/add")
-    public Result add(@RequestBody Order order) {
-        orderService.save(order);
+    public Result add(@RequestBody CheckOrder checkOrder) {
+        checkOrderService.save(checkOrder);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
     public Result delete(@RequestParam Integer id) {
-        orderService.deleteById(id);
+        checkOrderService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(Order order) {
-        orderService.update(order);
+    public Result update(CheckOrder checkOrder) {
+        checkOrderService.update(checkOrder);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
     public Result detail(@RequestParam Integer id) {
-        Order order = orderService.findById(id);
-        return ResultGenerator.genSuccessResult(order);
+        CheckOrder checkOrder = checkOrderService.findById(id);
+        return ResultGenerator.genSuccessResult(checkOrder);
     }
 
     @PostMapping("/list")
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
-        List<Order> list = orderService.findAll();
+        List<CheckOrder> list = checkOrderService.findAll();
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
     }

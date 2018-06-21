@@ -1,9 +1,6 @@
 package com.bigear.wechat.dto;
 
 import java.util.List;
-
-import com.bigear.wechat.model.Photo;
-
 import lombok.Data;
 
 @Data

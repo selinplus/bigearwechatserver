@@ -3,9 +3,6 @@ import com.bigear.wechat.core.Result;
 import com.bigear.wechat.core.ResultGenerator;
 import com.bigear.wechat.model.EnvCheck;
 import com.bigear.wechat.service.EnvCheckService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
