@@ -32,8 +32,8 @@ public class SecurityCheckController {
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
-        securityCheckService.deleteById(id);
+    public Result delete(@RequestParam String ids) {
+        securityCheckService.deleteByIds(ids);
         return ResultGenerator.genSuccessResult();
     }
 

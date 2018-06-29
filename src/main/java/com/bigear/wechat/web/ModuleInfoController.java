@@ -1,7 +1,10 @@
 package com.bigear.wechat.web;
 import com.bigear.wechat.core.Result;
 import com.bigear.wechat.core.ResultGenerator;
+import com.bigear.wechat.dto.DataInput;
+import com.bigear.wechat.model.Carousel;
 import com.bigear.wechat.model.ModuleInfo;
+import com.bigear.wechat.service.CarouselService;
 import com.bigear.wechat.service.ModuleInfoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -15,7 +18,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* Created by selinplus on 2018/06/11.
+* Created by selinplus on 2018/06/29.
 */
 @RestController
 @RequestMapping("/module/info")
@@ -23,25 +26,24 @@ import java.util.List;
 public class ModuleInfoController {
     @Resource
     private ModuleInfoService moduleInfoService;
-
+    @Resource
+    private CarouselService carouselService;
     @PostMapping("/add")
-    public Result add(@RequestBody ModuleInfo moduleInfo) {
-        System.out.println("************" + moduleInfo.getType());
+    public Result add(@RequestBody DataInput dataInput) {
+        ModuleInfo moduleInfo = dataInput.getModuleInfo();
         if (!moduleInfo.getType().equals("行业资讯")) {
           moduleInfoService.deleteByType(moduleInfo.getType());
         }
         moduleInfoService.save(moduleInfo);
+        List<Carousel> carousels = dataInput.getCarousels();
+        for (int i=0; i<carousels.size(); i++) {
+          carouselService.save(carousels.get(i));
+        }
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
     public Result delete(@RequestParam Integer id) {
-        moduleInfoService.deleteById(id);
-        return ResultGenerator.genSuccessResult();
-    }
-
-    @PostMapping("/deleteByType")
-    public Result deleteByType(@RequestParam Integer id) {
         moduleInfoService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
@@ -53,9 +55,17 @@ public class ModuleInfoController {
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
-        ModuleInfo moduleInfo = moduleInfoService.findById(id);
-        return ResultGenerator.genSuccessResult(moduleInfo);
+    public Result detail(@RequestParam String type, @RequestParam(defaultValue = "") String id) {
+        System.out.println("type: " + type);
+        System.out.println("id: " + id);
+        ModuleInfo moduleInfo = moduleInfoService.getDetail(type, id);
+        DataInput dataInput = new DataInput();
+        dataInput.setModuleInfo(moduleInfo);
+        if ("".equals(id)) {
+          List<Carousel> carousels = carouselService.findByModuleInfoId(moduleInfo.getId());
+          dataInput.setCarousels(carousels);
+        }
+        return ResultGenerator.genSuccessResult(dataInput);
     }
 
     @PostMapping("/list")

@@ -14,11 +14,27 @@
     <result column="vehicle_type" jdbcType="VARCHAR" property="vehicleType" />
     <result column="secu_addition" jdbcType="VARCHAR" property="secuAddition" />
     <result column="fuel_type" jdbcType="VARCHAR" property="fuelType" />
-    <result column="env_check" jdbcType="VARCHAR" property="envCheck" />
+    <result column="env_check_type" jdbcType="VARCHAR" property="envCheckType" />
     <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
     <result column="order_num" jdbcType="VARCHAR" property="orderNum" />
-    <result column="price" jdbcType="REAL" property="price" />
+    <result column="total_fee" jdbcType="REAL" property="totalFee" />
     <result column="payment_method" jdbcType="VARCHAR" property="paymentMethod" />
     <result column="pay_status" jdbcType="VARCHAR" property="payStatus" />
+    <result column="vehicle_type_fee" jdbcType="REAL" property="vehicleTypeFee" />
+    <result column="secu_addition_fee" jdbcType="REAL" property="secuAdditionFee" />
+    <result column="env_check_type_fee" jdbcType="REAL" property="envCheckTypeFee" />
   </resultMap>
+
+  <select id="getDetailById" resultMap="BaseResultMap">
+    select * from check_order where id = #{id}
+  </select>
+  <update id="updatePayStatus">
+    update check_order set pay_status=#{payStatus} where order_num = #{orderNum}
+  </update> 
+  <delete id="deleteByOrderNum">
+    delete from check_order where order_num = #{orderNum}
+  </delete>
+  <select id="getUnpaidOrder" resultMap="BaseResultMap">
+    select * from check_order where pay_status != '支付成功' and customer_id = #{customerId}
+  </select>
 </mapper>

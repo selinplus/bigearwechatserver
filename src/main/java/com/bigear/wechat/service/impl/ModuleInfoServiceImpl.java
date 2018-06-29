@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 
 
 /**
- * Created by selinplus on 2018/06/11.
+ * Created by selinplus on 2018/06/29.
  */
 @Service
 @Transactional
@@ -19,9 +19,14 @@ public class ModuleInfoServiceImpl extends AbstractService<ModuleInfo> implement
     @Resource
     private ModuleInfoMapper moduleInfoMapper;
 
+    @Override
+    public void deleteByType(String type) {
+      moduleInfoMapper.deleteByType(type);
+	  }
+
 	@Override
-	public void deleteByType(String type) {
-		moduleInfoMapper.deleteByType(type);
+	public ModuleInfo getDetail(String type, String id) {
+		return moduleInfoMapper.getDetail(type, id);
 	}
-  
+
 }

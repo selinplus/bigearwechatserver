@@ -5,7 +5,7 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="title" jdbcType="VARCHAR" property="title" />
@@ -15,4 +15,15 @@
   <delete id="deleteByType">
     delete from module_info where type=#{type}
   </delete>
+  <select id="getDetail" resultMap="BaseResultMap">
+    select * from module_info
+    <where>
+      <if test="type != null">
+        type = #{type}
+      </if>
+      <if test="id != ''">
+        and id = #{id}
+      </if>
+    </where>
+  </select>
 </mapper>

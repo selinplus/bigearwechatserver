@@ -30,8 +30,8 @@ public class CheckOrder {
     @Column(name = "fuel_type")
     private String fuelType;
 
-    @Column(name = "env_check")
-    private String envCheck;
+    @Column(name = "env_check_type")
+    private String envCheckType;
 
     @Column(name = "order_date")
     private Date orderDate;
@@ -39,13 +39,23 @@ public class CheckOrder {
     @Column(name = "order_num")
     private String orderNum;
 
-    private Float price;
+    @Column(name = "total_fee")
+    private Float totalFee;
 
     @Column(name = "payment_method")
     private String paymentMethod;
 
     @Column(name = "pay_status")
     private String payStatus;
+
+    @Column(name = "vehicle_type_fee")
+    private Float vehicleTypeFee;
+
+    @Column(name = "secu_addition_fee")
+    private Float secuAdditionFee;
+
+    @Column(name = "env_check_type_fee")
+    private Float envCheckTypeFee;
 
     /**
      * @return id
@@ -174,17 +184,17 @@ public class CheckOrder {
     }
 
     /**
-     * @return env_check
+     * @return env_check_type
      */
-    public String getEnvCheck() {
-        return envCheck;
+    public String getEnvCheckType() {
+        return envCheckType;
     }
 
     /**
-     * @param envCheck
+     * @param envCheckType
      */
-    public void setEnvCheck(String envCheck) {
-        this.envCheck = envCheck;
+    public void setEnvCheckType(String envCheckType) {
+        this.envCheckType = envCheckType;
     }
 
     /**
@@ -216,17 +226,17 @@ public class CheckOrder {
     }
 
     /**
-     * @return price
+     * @return total_fee
      */
-    public Float getPrice() {
-        return price;
+    public Float getTotalFee() {
+        return totalFee;
     }
 
     /**
-     * @param price
+     * @param totalFee
      */
-    public void setPrice(Float price) {
-        this.price = price;
+    public void setTotalFee(Float totalFee) {
+        this.totalFee = totalFee;
     }
 
     /**
@@ -255,5 +265,47 @@ public class CheckOrder {
      */
     public void setPayStatus(String payStatus) {
         this.payStatus = payStatus;
+    }
+
+    /**
+     * @return vehicle_type_fee
+     */
+    public Float getVehicleTypeFee() {
+        return vehicleTypeFee;
+    }
+
+    /**
+     * @param vehicleTypeFee
+     */
+    public void setVehicleTypeFee(Float vehicleTypeFee) {
+        this.vehicleTypeFee = vehicleTypeFee;
+    }
+
+    /**
+     * @return secu_addition_fee
+     */
+    public Float getSecuAdditionFee() {
+        return secuAdditionFee;
+    }
+
+    /**
+     * @param secuAdditionFee
+     */
+    public void setSecuAdditionFee(Float secuAdditionFee) {
+        this.secuAdditionFee = secuAdditionFee;
+    }
+
+    /**
+     * @return env_check_type_fee
+     */
+    public Float getEnvCheckTypeFee() {
+        return envCheckTypeFee;
+    }
+
+    /**
+     * @param envCheckTypeFee
+     */
+    public void setEnvCheckTypeFee(Float envCheckTypeFee) {
+        this.envCheckTypeFee = envCheckTypeFee;
     }
 }
