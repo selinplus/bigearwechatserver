@@ -7,6 +7,8 @@ import com.bigear.wechat.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 
@@ -27,6 +29,21 @@ public class ModuleInfoServiceImpl extends AbstractService<ModuleInfo> implement
 	@Override
 	public ModuleInfo getDetail(String type, String id) {
 		return moduleInfoMapper.getDetail(type, id);
+	}
+
+	@Override
+	public List<ModuleInfo> listIndustryInfo() {
+		return moduleInfoMapper.listIndustryInfo();
+	}
+
+	@Override
+	public Integer getIndustryInfoCount() {
+		return moduleInfoMapper.totalCount();
+	}
+
+	@Override
+	public List<ModuleInfo> listAll() {
+		return moduleInfoMapper.listAll();
 	}
 
 }

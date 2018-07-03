@@ -8,6 +8,8 @@ import com.bigear.wechat.service.CarouselService;
 import com.bigear.wechat.service.ModuleInfoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,22 +45,25 @@ public class ModuleInfoController {
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
-        moduleInfoService.deleteById(id);
+    public Result delete(@RequestParam String ids) {
+        moduleInfoService.deleteByIds(ids);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(ModuleInfo moduleInfo) {
+    public Result update(@RequestBody ModuleInfo moduleInfo) {
+        // System.out.println("**********ID*********" + moduleInfo.getId());
+        // System.out.println("**********title*********" + moduleInfo.getTitle());
         moduleInfoService.update(moduleInfo);
         return ResultGenerator.genSuccessResult();
     }
 
-    @PostMapping("/detail")
+    @GetMapping("/detail")
     public Result detail(@RequestParam String type, @RequestParam(defaultValue = "") String id) {
         System.out.println("type: " + type);
         System.out.println("id: " + id);
         ModuleInfo moduleInfo = moduleInfoService.getDetail(type, id);
+        if (moduleInfo == null) return ResultGenerator.genSuccessResult();
         DataInput dataInput = new DataInput();
         dataInput.setModuleInfo(moduleInfo);
         if ("".equals(id)) {
@@ -71,8 +76,20 @@ public class ModuleInfoController {
     @PostMapping("/list")
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
-        List<ModuleInfo> list = moduleInfoService.findAll();
+        List<ModuleInfo> list = moduleInfoService.listIndustryInfo();
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
     }
+    @GetMapping("/totalCount")
+    public Result totalCount() {
+      Integer totalCount = moduleInfoService.getIndustryInfoCount();
+      return ResultGenerator.genSuccessResult(totalCount);
+    }
+
+    @GetMapping("/listAll")
+    public Result listAll() {
+      List<ModuleInfo> listAll = moduleInfoService.listAll();
+      return ResultGenerator.genSuccessResult(listAll);
+    }
+
 }

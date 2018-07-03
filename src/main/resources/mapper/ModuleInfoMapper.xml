@@ -26,4 +26,13 @@
       </if>
     </where>
   </select>
+  <select id="listIndustryInfo" resultMap="BaseResultMap">
+    select * from module_info where type = '行业资讯'
+  </select>
+  <select id="totalCount" resultType="Integer">
+    select count(*) from module_info where type = '行业资讯'
+  </select>
+  <select id="listAll" resultMap="BaseResultMap">
+    select * from module_info
+  </select>
 </mapper>
