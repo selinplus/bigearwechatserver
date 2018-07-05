@@ -39,4 +39,9 @@ public class CheckOrderServiceImpl extends AbstractService<CheckOrder> implement
 		return checkOrderMapper.getUnpaidOrder(customerId);
 	}
 
+	@Override
+	public int orderCountByOrderDate(long timestamp) {
+		return checkOrderMapper.orderCountByOrderDate(timestamp);
+	}
+
 }

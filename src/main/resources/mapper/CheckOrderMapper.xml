@@ -37,4 +37,8 @@
   <select id="getUnpaidOrder" resultMap="BaseResultMap">
     select * from check_order where pay_status != '支付成功' and customer_id = #{customerId}
   </select>
+  <select id="orderCountByOrderDate" resultType="int">
+    select count(*) from check_order where order_date  &gt;= FROM_UNIXTIME( #{timestamp} )
+	    and order_date &lt; FROM_UNIXTIME( ( #{timestamp} + 3600) )
+  </select>
 </mapper>

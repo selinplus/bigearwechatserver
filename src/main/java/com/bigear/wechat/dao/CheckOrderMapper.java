@@ -10,4 +10,5 @@ public interface CheckOrderMapper extends Mapper<CheckOrder> {
   public void updatePayStatus(@Param("orderNum") String orderNum, @Param("payStatus") String payStatus);
   public void deleteByOrderNum(String orderNum);
   public CheckOrder getUnpaidOrder(long customerId);
+  public int orderCountByOrderDate(long timestamp);
 }

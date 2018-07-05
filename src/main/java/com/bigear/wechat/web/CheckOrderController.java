@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -67,5 +71,24 @@ public class CheckOrderController {
         List<CheckOrder> list = checkOrderService.findAll();
         // PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(list);
+    }
+
+    @PostMapping("/checkOrderDate")
+    public Result checkOrderDate(@RequestParam long orderDate, @RequestParam int hourAmount) throws ParseException {
+      System.out.println("**************orderDate************" + orderDate);
+      System.out.println("**************hourAmount************" + hourAmount);
+      Date date = new Date(orderDate);
+      SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd HH");
+      String tmpDateStr = s.format(date);
+      SimpleDateFormat s2 = new SimpleDateFormat("yyyy-MM-dd HH");
+      long curTimeStamp = s2.parse(tmpDateStr).getTime();
+      System.out.println("***********curTimeStamp*************" + curTimeStamp);
+      int orderCount = checkOrderService.orderCountByOrderDate(curTimeStamp / 1000);
+      System.out.println("********orderCount*********" + orderCount);
+      if (orderCount > hourAmount) {
+        return ResultGenerator.genSuccessResult("预约时间段已达预约上限，请更改预约时间！");
+      } else {
+        return ResultGenerator.genSuccessResult();
+      }
     }
 }

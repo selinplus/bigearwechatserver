@@ -14,4 +14,5 @@ public interface CheckOrderService extends Service<CheckOrder> {
   public void updatePayStatus(String orderNum, String payStatus);
   public void deleteByOrderNum(String orderNum);
   public CheckOrder getUnpaidOrder(long customerId);
+  public int orderCountByOrderDate(long timestamp);
 }
