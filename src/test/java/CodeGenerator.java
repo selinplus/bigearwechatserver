@@ -18,7 +18,8 @@ import static com.bigear.wechat.core.ProjectConstant.*;
  */
 public class CodeGenerator {
     //JDBC配置，请修改为你项目的实际配置
-    private static final String JDBC_URL = "jdbc:mysql://192.168.3.15:3306/vehicle";
+    // private static final String JDBC_URL = "jdbc:mysql://192.168.3.15:3306/vehicle";
+    private static final String JDBC_URL = "jdbc:mysql://58.87.73.253:3306/vehicle";
     private static final String JDBC_USERNAME = "root";
     private static final String JDBC_PASSWORD = "good88luck";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
@@ -37,7 +38,7 @@ public class CodeGenerator {
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("order_setting");
+        // genCode("order_setting");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
 
