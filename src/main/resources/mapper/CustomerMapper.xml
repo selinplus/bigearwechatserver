@@ -15,6 +15,6 @@
   </resultMap>
 
   <delete id="deleteByCustomerId">
-    delete from CUSTOMER where id = #{customerId}
+    delete from customer where id = #{customerId}
   </delete>
 </mapper>

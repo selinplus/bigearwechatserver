@@ -11,9 +11,9 @@
   </resultMap>
 
   <select id="getPlatenumList" resultMap="BaseResultMap">
-    select * from PLATENUM where customer_id = #{customerId}
+    select * from platenum where customer_id = #{customerId}
   </select>
   <delete id="deleteByCustomerId">
-    delete from PLATENUM where customer_id = #{customerId}
+    delete from platenum where customer_id = #{customerId}
   </delete>
 </mapper>

@@ -11,10 +11,10 @@
   </resultMap>
 
   <select id="getPhotoList" resultType="String">
-    select photo from PHOTO where platenum_id = #{platenumId}
+    select photo from photo where platenum_id = #{platenumId}
   </select>
   
   <delete id="deleteByPlatenumId">
-    delete from PHOTO where platenum_id = #{platenumId}
+    delete from photo where platenum_id = #{platenumId}
   </delete>
 </mapper>
