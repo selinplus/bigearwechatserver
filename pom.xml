@@ -7,7 +7,7 @@
     <groupId>com.github.lihengming</groupId>
     <artifactId>spring-boot-api-project-seed</artifactId>
     <version>1.0</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <properties>
         <weixin-java-mp.version>3.1.0</weixin-java-mp.version>
@@ -36,10 +36,10 @@
                </exclusion>
             </exclusions>
         </dependency>
-        <dependency>  
+        <!-- <dependency>  
             <groupId>org.springframework.boot</groupId>  
             <artifactId>spring-boot-starter-thymeleaf</artifactId>  
-        </dependency> 
+        </dependency>  -->
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
@@ -134,12 +134,12 @@
             <version>2.9.0</version>
         </dependency>
         <!--代码生成器依赖-->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <version>2.3.23</version>
             <scope>test</scope>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
@@ -167,6 +167,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>bigearwechatserver</finalName>
     </build>
 
     <repositories>

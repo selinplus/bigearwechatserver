@@ -12,17 +12,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bigear.wechat.configurer.FileUploadProperties;
+import com.bigear.wechat.configurer.WechatMpProperties;
 
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-@Controller
+@RestController
+@EnableConfigurationProperties(FileUploadProperties.class)
 public class FileUpDownController {
+  @Autowired
+  private FileUploadProperties properties;
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
@@ -37,12 +47,13 @@ public class FileUpDownController {
         // if (!saveFile.getParentFile().exists()) {  
         //     saveFile.getParentFile().mkdirs();  
         // }  
+        System.out.println("uploadPath: " + this.properties.getPath());
+        File path = new File(this.properties.getPath());
         //获取跟目录
-        File path = new File(ResourceUtils.getURL("classpath:").getPath());
+        // File path = new File(ResourceUtils.getURL("classpath:").getPath());
         if(!path.exists()) path = new File("");
-        System.out.println("path: "+ path.getAbsolutePath());
-        //如果上传目录为/static/images/upload/，则可以如下获取：
-        File upload = new File(path.getAbsolutePath(),"static/images/upload");
+        // System.out.println("path: "+ path.getAbsolutePath());
+        File upload = new File(path.getAbsolutePath(),"upload");
         if(!upload.exists()) upload.mkdirs();
         String saveFile = upload + "/" + saveFileName;
         try {  
