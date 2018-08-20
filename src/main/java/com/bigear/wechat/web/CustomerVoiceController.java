@@ -6,6 +6,7 @@ import com.bigear.wechat.service.CustomerVoiceService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,7 @@ public class CustomerVoiceController {
     private CustomerVoiceService customerVoiceService;
 
     @PostMapping("/add")
-    public Result add(CustomerVoice customerVoice) {
+    public Result add(@RequestBody CustomerVoice customerVoice) {
         customerVoiceService.save(customerVoice);
         return ResultGenerator.genSuccessResult();
     }
