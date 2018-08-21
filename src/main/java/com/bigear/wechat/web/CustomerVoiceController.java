@@ -5,6 +5,8 @@ import com.bigear.wechat.model.CustomerVoice;
 import com.bigear.wechat.service.CustomerVoiceService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,12 @@ public class CustomerVoiceController {
     public Result add(@RequestBody CustomerVoice customerVoice) {
         customerVoiceService.save(customerVoice);
         return ResultGenerator.genSuccessResult();
+    }
+
+    @GetMapping("/getAll")
+    public Result getAll() {
+      List<CustomerVoice> list = customerVoiceService.findAll();
+      return ResultGenerator.genSuccessResult(list);
     }
 
     @PostMapping("/delete")
