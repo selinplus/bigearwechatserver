@@ -1,5 +1,6 @@
 package com.bigear.wechat.model;
 
+import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "customer_voice")
@@ -14,7 +15,17 @@ public class CustomerVoice {
     @Column(name = "answer_content")
     private String answerContent;
 
-    private String flag;
+    @Column(name = "is_display")
+    private String isDisplay;
+
+    @Column(name = "create_time")
+    private Date createTime;
+
+    @Column(name = "update_time")
+    private Date updateTime;
+
+    @Column(name = "is_reply")
+    private String isReply;
 
     /**
      * @return id
@@ -59,16 +70,58 @@ public class CustomerVoice {
     }
 
     /**
-     * @return flag
+     * @return is_display
      */
-    public String getFlag() {
-        return flag;
+    public String getIsDisplay() {
+        return isDisplay;
     }
 
     /**
-     * @param flag
+     * @param isDisplay
      */
-    public void setFlag(String flag) {
-        this.flag = flag;
+    public void setIsDisplay(String isDisplay) {
+        this.isDisplay = isDisplay;
+    }
+
+    /**
+     * @return create_time
+     */
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * @param createTime
+     */
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    /**
+     * @return update_time
+     */
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    /**
+     * @param updateTime
+     */
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    /**
+     * @return is_reply
+     */
+    public String getIsReply() {
+        return isReply;
+    }
+
+    /**
+     * @param isReply
+     */
+    public void setIsReply(String isReply) {
+        this.isReply = isReply;
     }
 }

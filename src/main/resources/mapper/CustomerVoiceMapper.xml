@@ -8,6 +8,9 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="ask_content" jdbcType="VARCHAR" property="askContent" />
     <result column="answer_content" jdbcType="VARCHAR" property="answerContent" />
-    <result column="flag" jdbcType="VARCHAR" property="flag" />
+    <result column="is_display" jdbcType="VARCHAR" property="isDisplay" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_reply" jdbcType="VARCHAR" property="isReply" />
   </resultMap>
 </mapper>

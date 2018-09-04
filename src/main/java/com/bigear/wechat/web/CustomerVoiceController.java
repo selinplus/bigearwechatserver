@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* Created by selinplus on 2018/08/20.
+* Created by selinplus on 2018/09/04.
 */
 @RestController
 @RequestMapping("/customer/voice")
@@ -32,20 +32,20 @@ public class CustomerVoiceController {
         return ResultGenerator.genSuccessResult();
     }
 
-    @GetMapping("/getAll")
-    public Result getAll() {
-      List<CustomerVoice> list = customerVoiceService.findAll();
-      return ResultGenerator.genSuccessResult(list);
-    }
-
     @PostMapping("/delete")
     public Result delete(@RequestParam Integer id) {
         customerVoiceService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
+    @PostMapping("/deleteByIds")
+    public Result deleteByIds(@RequestParam String ids) {
+      customerVoiceService.deleteByIds(ids);
+      return ResultGenerator.genSuccessResult();
+    }
+
     @PostMapping("/update")
-    public Result update(CustomerVoice customerVoice) {
+    public Result update(@RequestBody CustomerVoice customerVoice) {
         customerVoiceService.update(customerVoice);
         return ResultGenerator.genSuccessResult();
     }
@@ -62,5 +62,10 @@ public class CustomerVoiceController {
         List<CustomerVoice> list = customerVoiceService.findAll();
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
+    }
+    @GetMapping("/listAll")
+    public Result list() {
+        List<CustomerVoice> list = customerVoiceService.findAll();
+        return ResultGenerator.genSuccessResult(list);
     }
 }
